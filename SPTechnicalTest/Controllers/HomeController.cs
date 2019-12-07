@@ -1,4 +1,5 @@
 ﻿using SPTechnicalTest.DataAccessLayer;
+using SPTechnicalTest.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,9 @@ namespace SPTechnicalTest.Controllers
             var startDate = DateTime.Parse("14/10/2019");
             var endDate = DateTime.Parse("20/10/2019");
 
-            var indexVMList = users.GetWeeklyReports(startDate, endDate, db);
+            var weeklyReportVMs = users.GetWeeklyReportsUKSA(startDate, endDate, db);
 
-            return View(indexVMList);
+            return View(weeklyReportVMs);
         }
     }
 }

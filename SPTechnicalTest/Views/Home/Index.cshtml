@@ -1,4 +1,4 @@
-﻿@model List<SPTechnicalTest.ViewModels.IndexViewModel>
+﻿@model List<SPTechnicalTest.ViewModels.WeeklyReportViewModel>
 
 @{
     ViewBag.Title = "WeeklyReport";
@@ -6,29 +6,115 @@
     @Styles.Render("~/Content/css");
 }
 
-    <section id="WeeklyReport" class="container">
-        <article class="Table row table-row">
+<section id="WeeklyReport" class="container">
+    <article class="Table row table-row">
 
-            <div class="TableHeader offset-3 col-9 text-center table-bordered border-dark">
-                <h3 class="font-weight-bold p-0">USERS</h3>
-            </div><!--/.TableHeader-->
+        <div id="TableHeader" class="offset-3 col-9 text-center table-bordered border-dark">
+            <h3 class="font-weight-bold p-0">USERS</h3>
+        </div><!--/#TableHeader-->
 
-            <div class="Users offset-3 col-9 table-bordered border-dark">
-                <div class="row">
-                    @foreach (var vm in Model)
-                    {
-                        <div class="col-4 text-center table-bordered border-dark">
-                            <h4 class="UserName">@vm.Name</h4><!--.UserName/-->
-                            <div class="Countries row">
-                                <div class="col-6 table-bordered"><h5>UK</h5></div>
-                                <div class="col-6 table-bordered"><h5>SA</h5></div>
-                            </div><!--/.Countries-->
-                        </div>
-                    }
+        <div id="Users" class="offset-3 col-9 table-bordered border-dark">
+            <div class="row">
+                @foreach (var vm in Model)
+                {
+                    <div class="col-4 text-center table-bordered border-dark">
+                        <h4 class="UserName font-weight-bold">
+                            @vm.Name
+                        </h4><!--/.UserName-->
+
+                        <div class="Countries row">
+                            <div class="col-6 table-bordered"><h5 class="font-weight-bold">UK</h5></div>
+                            <div class="col-6 table-bordered"><h5 class="font-weight-bold">SA</h5></div>
+                        </div><!--/.Countries-->
+                    </div>
+                }
+            </div>
+        </div><!--/#Users-->
+
+        <div id="RFQs" class="col-12 table-bordered border-dark">
+            <div class="row">
+                <div class="col-3 table-bordered border-dark">
+                    <h4 class="font-weight-bold">RFQs</h4>
                 </div>
-            </div><!--/.Users-->
+                @foreach (var vm in Model)
+                {
+                    <div class="UserOne col-3 text-center pt-2">
+                        <div class="row">
+                            <div class="UK col-6 h5">
+                                @vm.UKRFQs
+                            </div>
+                            <div class="SA col-6 h5">
+                                @vm.SARFQs
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div><!--/#RFQs-->
+
+        <div id="CancelledRFQs" class="col-12 table-bordered border-dark">
+            <div class="row">
+                <div class="col-3 table-bordered border-dark">
+                    <h4 class="font-weight-bold">Cancelled RFQs</h4>
+                </div>
+                @foreach (var vm in Model)
+                {
+                    <div class="UserOne col-3 text-center pt-2">
+                        <div class="row">
+                            <div class="UK col-6 h5">
+                                @vm.UKCancelledRFQs
+                            </div>
+                            <div class="SA col-6 h5">
+                                @vm.SACancelledRFQs
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div><!--/#RFQs-->
+
+        <div id="LineItems" class="col-12 table-bordered border-dark">
+            <div class="row">
+                <div class="col-3 table-bordered border-dark">
+                    <h4 class="font-weight-bold">Line Items</h4>
+                </div>
+                @foreach (var vm in Model)
+                {
+                    <div class="UserOne col-3 text-center pt-2">
+                        <div class="row">
+                            <div class="UK col-6 h5">
+                                @vm.UKLineItems
+                            </div>
+                            <div class="SA col-6 h5">
+                                @vm.SALineItems
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div><!--/#RFQs-->
+
+        <div id="Cancelled Line Items" class="col-12 table-bordered border-dark">
+            <div class="row">
+                <div class="col-3 table-bordered border-dark">
+                    <h4 class="font-weight-bold">Cancelled Items</h4>
+                </div>
+                @foreach (var vm in Model)
+                {
+                    <div class="UserOne col-3 text-center pt-2">
+                        <div class="row">
+                            <div class="UK col-6 h5">
+                                @vm.UKCancelledLineItems
+                            </div>
+                            <div class="SA col-6 h5">
+                                @vm.SACancelledLineItems
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div><!--/#RFQs-->
 
 
-
-        </article><!--/.PageRow-->
-    </section><!--/#WeeklyReport-->
+    </article><!--/.PageRow-->
+</section><!--/#WeeklyReport-->
