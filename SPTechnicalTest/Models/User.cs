@@ -5,13 +5,16 @@ using System.Web;
 
 namespace SPTechnicalTest.Models
 {
-    public class Location
+    public class User
     {
         //Properties
         public float ID { get; set; }
+        public string Login { get; set; }
         public string Name { get; set; }
+        public float LocationID { get; set; }
 
         //Relationships
-        public virtual List<User> User { get; set; }
+        public virtual Location Location { get; set; }
+        public virtual List<RFQ> RFQs { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SPTechnicalTest.DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,8 @@ namespace SPTechnicalTest.Controllers
 {
     public class HomeController : Controller
     {
+        public readonly StormContext db = new StormContext();
+
         public ActionResult Index()
         {
             return View();
