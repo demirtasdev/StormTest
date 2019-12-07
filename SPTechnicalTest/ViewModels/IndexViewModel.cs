@@ -10,7 +10,9 @@ namespace SPTechnicalTest.ViewModels
     {
         public string Name { get; set; }
         public string Location { get; set; }
-        public List<RFQ> RFQs { get; set; }
-        public List<RFQ> CancelledRFQs { get; set; }
+        public long RFQs { get; set; }
+        public long CancelledRFQs { get; set; }
+        public long LineItems { get; set; }
+        public long CancelledLineItems { get; set; }
     }
 }

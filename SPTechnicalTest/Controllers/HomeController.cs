@@ -17,9 +17,9 @@ namespace SPTechnicalTest.Controllers
             var startDate = DateTime.Parse("14/10/2019");
             var endDate = DateTime.Parse("20/10/2019");
 
-            var indexVM = users.GetWeeklyReports(startDate, endDate, db);
+            var indexVMList = users.GetWeeklyReports(startDate, endDate, db);
 
-            return View(indexVM);
+            return View(indexVMList);
         }
     }
 }

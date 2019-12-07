@@ -16,13 +16,36 @@ namespace SPTechnicalTest
             var weeklyReportVMList = new List<IndexViewModel>();
             foreach (var user in users)
             {
-                weeklyReportVMList.Add(new IndexViewModel
+                var weeklyReportVM = new IndexViewModel
                 {
                     Name = user.Name,
                     Location = user.Location.StormLocationName,
-                    RFQs = user.RFQs.Where(r => r.Status != "CAN" && r.RFQDate >= startDate && r.RFQDate <= endDate).ToList(),
-                    CancelledRFQs = user.RFQs.Where(r => r.Status == "CAN" && r.RFQDate >= startDate && r.RFQDate <= endDate).ToList()
-                });
+                    RFQs = 0,
+                    CancelledRFQs = 0,
+                    LineItems = 0,
+                    CancelledLineItems = 0
+                };
+
+                //Set the RFQs, CancelledRFQs, LineItems, and CancelledLineItems properties
+                foreach(var rfq in db.RFQs)
+                {
+                    if(rfq.User == user && rfq.RFQDate >= startDate && rfq.RFQDate <= endDate)
+                    {
+                        if (rfq.Status == "CAN")
+                        {
+                            weeklyReportVM.RFQs++;
+                            rfq.Content.ForEach(c => weeklyReportVM.LineItems += Convert.ToInt64(c.Qty));
+                        }
+                        else
+                        {
+                            weeklyReportVM.CancelledRFQs++;
+                            rfq.Content.ForEach(c => weeklyReportVM.CancelledLineItems += Convert.ToInt64(c.Qty));
+                        }
+                    }
+                }
+                
+                //Add the newly populated WeeklyReportVM to the list declared at the beginning
+                weeklyReportVMList.Add(weeklyReportVM);
             }
 
             // Return the list
