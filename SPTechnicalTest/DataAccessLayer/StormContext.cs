@@ -12,7 +12,6 @@ namespace SPTechnicalTest.DataAccessLayer
         public StormContext()
             : base("name=StormContext")
         {
-            Database.SetInitializer(new DropCreateDatabaseAlways<StormContext>());
         }
 
         public virtual DbSet<Location> Locations { get; set; }
@@ -25,27 +24,34 @@ namespace SPTechnicalTest.DataAccessLayer
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
             //###_FLUENT_API_###
-            // Location
-            modelBuilder.Entity<Location>()
-                .HasKey(l => l.ID);
-
             // User
             modelBuilder.Entity<User>()
                 .HasKey(u => u.ID)
+                .HasKey(u => u.LoginID);
+            modelBuilder.Entity<User>()
                 .HasRequired<Location>(u => u.Location)
-                .WithMany(u => u.User)
+                .WithMany(l => l.User)
                 .HasForeignKey<double>(u => u.StormLocationID);
 
             // RFQ
             modelBuilder.Entity<RFQ>()
                 .HasKey(r => r.RFQNo);
+            modelBuilder.Entity<RFQ>()
+                .HasRequired<User>(r => r.User)
+                .WithMany(u => u.RFQs)
+                .HasForeignKey<string>(r => r.LoginID);
 
             // Content
             modelBuilder.Entity<Content>()
-                .HasKey(c => c.ID)
+                .HasKey(c => c.ID);
+            modelBuilder.Entity<Content>()
                 .HasRequired<RFQ>(c => c.RFQ)
                 .WithMany(r => r.Content)
                 .HasForeignKey<double>(c => c.RFQNo);
+
+            // Location
+            modelBuilder.Entity<Location>()
+                .HasKey(l => l.ID);
         }
     }
 }
