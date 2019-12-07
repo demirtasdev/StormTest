@@ -13,21 +13,13 @@ namespace SPTechnicalTest.Controllers
 
         public ActionResult Index()
         {
-            return View();
-        }
+            var users = db.Users.Where(u => u.Name == "Joe Bloggs" || u.Name == "Jane Doe" || u.Name == "Bob James").ToList();
+            var startDate = DateTime.Parse("14/10/2019");
+            var endDate = DateTime.Parse("20/10/2019");
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+            var indexVM = users.GetWeeklyReports(startDate, endDate, db);
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return View(indexVM);
         }
     }
 }

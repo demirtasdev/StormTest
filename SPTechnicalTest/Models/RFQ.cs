@@ -8,9 +8,9 @@ namespace SPTechnicalTest.Models
     public class RFQ
     {
         //Properties
-        public float No { get; set; }
-        public DateTime Date { get; set; }
-        public float CustomerID { get; set; }
+        public double RFQNo { get; set; }
+        public DateTime RFQDate { get; set; }
+        public double CustomerID { get; set; }
         public string AccountManager { get; set; }
         public string CreatedBy { get; set; }
         public string Status { get; set; }

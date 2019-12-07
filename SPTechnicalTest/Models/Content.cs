@@ -8,12 +8,12 @@ namespace SPTechnicalTest.Models
     public class Content
     {
         //Properties
-        public float ID { get; set; }
-        public float RFQNo { get; set; }
+        public double ID { get; set; }
+        public double RFQNo { get; set; }
         public DateTime Date { get; set; }
-        public float LineItem { get; set; }
+        public double LineItem { get; set; }
         public string Description { get; set; }
-        public float Quantity { get; set; }
+        public double Qty { get; set; }
 
         //Relationships
         public virtual RFQ RFQ { get; set; }

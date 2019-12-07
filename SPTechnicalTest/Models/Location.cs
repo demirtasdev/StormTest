@@ -8,8 +8,8 @@ namespace SPTechnicalTest.Models
     public class Location
     {
         //Properties
-        public float ID { get; set; }
-        public string Name { get; set; }
+        public double ID { get; set; }
+        public string StormLocationName { get; set; }
 
         //Relationships
         public virtual List<User> User { get; set; }
